@@ -9,21 +9,27 @@ private:
 	string password;
 	int maxAllowed;
 	int maxTime;
-	vector <string> borrowedList;
+	vector <int> borrowedList;
 
 public:
-	student(string a, string b, int c, int d, vector <string> e);
+	student(string a, string b, int c, int d, vector <int> e);
 	void printStudent();
 
 	void setUsername(string x);
 	void setPassword(string x);
 	void setMaxAllowed(int x);
 	void setMaxTime(int x);
-	void setBorrowedList(vector <string> x);
+	void setBorrowedList(vector <int> x);
 
 	string getUsername();
 	string getPassword();
 	int getMaxAllowed();
 	int getMaxTime();
+
+	void returnBook(int x);
+
+	void printList();
+
+	bool hasBook(int x);
 
 };
