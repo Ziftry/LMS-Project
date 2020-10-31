@@ -3,7 +3,7 @@
 #include "student.h"
 using namespace std;
 
-student::student(string a, string b, int c, int d, vector <string> e) {
+student::student(string a, string b, int c, int d, vector <int> e) {
 	
 	username = a;
 	password = b;
@@ -25,6 +25,40 @@ void student::printStudent() {
 	cout << endl;
 }
 
+
+void student::printList() {
+	for (int i = 0; i < borrowedList.size(); i++) {
+		cout << borrowedList[i] << endl;
+	}
+	cout << endl;
+}
+
+
+bool student::hasBook(int x) {
+
+	for (int i = 0; i < borrowedList.size(); i++) {
+		if (borrowedList[i] == x)
+			return true;
+	}
+	return false;
+}
+
+
+
+void student::returnBook(int x) {
+	for (int i = 0; i < borrowedList.size(); i++) {
+		if (borrowedList[i] == x) {
+			borrowedList.erase(borrowedList.begin()+i);
+		}
+	}
+
+	// This should remove it from the student.txt file as well 
+
+}
+
+
+
+
 void student::setUsername(string x){
 	username = x;
 }
@@ -38,7 +72,7 @@ void student::setMaxAllowed(int x) {
 void student::setMaxTime(int x) {
 	maxTime = x;
 }
-void student::setBorrowedList(vector <string> x) {
+void student::setBorrowedList(vector <int> x) {
 	borrowedList = x;
 }
 
