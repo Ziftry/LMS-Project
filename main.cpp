@@ -5,6 +5,7 @@
 #include "book.h"
 #include "student.h"
 
+bool isValidID(int x);
 void loadBooks();
 void loadStudents();
 void printAllStudents();
@@ -19,12 +20,17 @@ int studentIndex;
 int main() {
 	
 	cout << "Loading files from databases..." << endl << endl;
+
+
 	loadBooks();
 	loadStudents();
 	studentIndex = -1;
+
+
+
+
+
 	userInterface();
-
-
 	cout << endl << "ALL DONE AND GOOD" << endl;
 }
 
@@ -36,19 +42,25 @@ void borrowBook() {
 }
 
 void returnBook() {
-	int input;
+	int returnID;
 	cout << "What is the ID of the book you want to return?" << endl;
-	cin >> input;
+	cin >> returnID;
 
-		
-
-
-
-
-
-
-
+	if (isValidID(returnID)) {
+		if (students[studentIndex].hasBook(returnID)) {
+			students[studentIndex].returnBook(returnID);
+			cout << "You have successfully returned this book!" << endl << endl;
+		}
+		else {
+			cout << "You have not taken this book out !" << endl << endl;
+		}
+	}
+	else {
+		cout << "This is not a valid book ID." << endl << endl;
+	}
 }
+
+
 
 void userInterface() {
 	char input;
@@ -69,11 +81,14 @@ void userInterface() {
 		case '2':
 			returnBook();
 			break;
+		case 'q':
+			students[studentIndex].printStudent();
+			break;
 		case '0':
 			logout = true;
 			break;
 		default:
-			cout << "Not a correct input, please try again:";
+			cout << "Not a correct input, please try again:" << endl << endl;
 			break;
 		}
 	}
@@ -123,8 +138,8 @@ void loadBooks() {    //Reads the data from book.txt
 }
 
 void loadStudents() { //reads the data from students.txt
-	string username, password, title;
-	int maxAllowed, maxTime, listSize;
+	string username, password;
+	int maxAllowed, maxTime, listSize, ID;
 
 	ifstream data_in;
 	data_in.open("student.txt");
@@ -135,11 +150,11 @@ void loadStudents() { //reads the data from students.txt
 
 
 	while (!data_in.eof()) {
-		vector <string> borrowed;
+		vector <int> borrowed;
 		data_in >> username >> password >> maxAllowed >> maxTime >> listSize;
 		for (listSize; listSize > 0; listSize--) {
-			data_in >> title;
-			borrowed.push_back(title);
+			data_in >> ID;
+			borrowed.push_back(ID);
 		}
 		students.push_back(student(username, password, maxAllowed, maxTime, borrowed));
 	}
@@ -152,4 +167,14 @@ void printAllStudents() {
 		students[i].printStudent();
 		cout << endl;
 	}
+}
+
+bool isValidID(int x) {
+
+	for (int i = 0; i < books.size(); i++) {
+		if (books[i].getID() == x) {
+			return(true);
+		}
+	}
+	return (false);
 }
