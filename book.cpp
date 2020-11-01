@@ -3,6 +3,17 @@
 #include "book.h"
 using namespace std;
 
+book::book(int a, string b, string c, string d, int e, string f, int g, int h) {
+	ISBN = a;
+	title = b;
+	author = c;
+	category = d;
+	ID = e;
+	readerName = f;
+	startDate = g;
+	expDate = h;
+}
+
 book::book(int a, string b, string c, string d, int e) {
 	ISBN = a;
 	title = b;
@@ -11,6 +22,11 @@ book::book(int a, string b, string c, string d, int e) {
 	ID = e;
 }
 
+void book::returnBook() {
+	readerName = "";
+	startDate = NULL;
+	expDate = NULL;
+}
 
 void book::setISBN(int x) {
 	ISBN = x;
@@ -36,11 +52,11 @@ void book::setName(string x) {
 	readerName = x;
 }
 
-void book::setStartDate(string x) {
+void book::setStartDate(int x) {
 	startDate = x;
 }
 
-void book::setExpDate(string x) {
+void book::setExpDate(int x) {
 	expDate = x;
 }
 
@@ -68,10 +84,10 @@ string book::getName() {
 	return readerName;
 }
 
-string book::getStartDate() {
+int book::getStartDate() {
 	return startDate;
 }
 
-string book::getExpDate() {
+int book::getExpDate() {
 	return expDate;
 }
