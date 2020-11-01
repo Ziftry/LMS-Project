@@ -25,11 +25,14 @@ public:
 	string getPassword();
 	int getMaxAllowed();
 	int getMaxTime();
+	int getListSize();
+	int getListValue(int x);
 
 	void returnBook(int x);
 
 	void printList();
 
 	bool hasBook(int x);
+	void borrowBook(int x);
 
 };
