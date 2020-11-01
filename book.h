@@ -11,22 +11,23 @@
 		string category;
 		int ID;
 		string readerName;
-		string startDate;
-		string expDate;
+		int startDate;
+		int expDate;
 
 	public:
+		book(int a, string b, string c, string d, int e, string f, int g, int h);
 		book(int a, string b, string c, string d, int e);
-		void takeout();
 
-	
+		void returnBook();
+
 		void setISBN(int x);
 		void setTitle(string x);
 		void setAuthor(string x);
 		void setCategory(string x);
 		void setID(int x);
 		void setName(string x);
-		void setStartDate(string x);
-		void setExpDate(string x);
+		void setStartDate(int x);
+		void setExpDate(int x);
 
 		int getISBN();
 		string getTitle();
@@ -34,6 +35,6 @@
 		string getCategory();
 		int getID();
 		string getName();
-		string getStartDate();
-		string getExpDate();
+		int getStartDate();
+		int getExpDate();
 	};
