@@ -42,9 +42,6 @@ bool student::hasBook(int x) {
 	}
 	return false;
 }
-
-
-
 void student::returnBook(int x) {
 	for (int i = 0; i < borrowedList.size(); i++) {
 		if (borrowedList[i] == x) {
@@ -55,14 +52,13 @@ void student::returnBook(int x) {
 	// This should remove it from the student.txt file as well 
 
 }
-
-
-
+void student::borrowBook(int x) {
+	borrowedList.push_back(x);
+}
 
 void student::setUsername(string x){
 	username = x;
 }
-
 void student::setPassword(string x) {
 	password = x;
 }
@@ -87,4 +83,10 @@ int student::getMaxAllowed() {
 }
 int student::getMaxTime() {
 	return maxTime;
+}
+int student::getListValue(int x) {
+	return borrowedList[x];
+}
+int student::getListSize() {
+	return borrowedList.size();
 }
