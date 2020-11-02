@@ -3,7 +3,8 @@
 #include "book.h"
 using namespace std;
 
-book::book(int a, string b, string c, string d, int e, string f, int g, int h) {
+book::book(long long a, string b, string c, string d, int e, string f, int g, int h) {
+	// This is the construcor for a book which has been borrowed
 	ISBN = a;
 	title = b;
 	author = c;
@@ -14,7 +15,8 @@ book::book(int a, string b, string c, string d, int e, string f, int g, int h) {
 	expDate = h;
 }
 
-book::book(int a, string b, string c, string d, int e) {
+book::book(long long a, string b, string c, string d, int e) {
+	// This is the constructor for a book that is not being borrowed
 	ISBN = a;
 	title = b;
 	author = c;
@@ -23,12 +25,15 @@ book::book(int a, string b, string c, string d, int e) {
 }
 
 void book::returnBook() {
+	// Return Book function is used when the user returns a book. It resets the reader name and dates preparing it
+	// for the next user
 	readerName = "";
 	startDate = NULL;
 	expDate = NULL;
 }
 
-void book::setISBN(int x) {
+//set functions set a variable to the inputted value
+void book::setISBN(long long x) {
 	ISBN = x;
 }
 
@@ -60,7 +65,8 @@ void book::setExpDate(int x) {
 	expDate = x;
 }
 
-int book::getISBN() {
+//get functions return a variable
+long long book::getISBN() {
 	return ISBN;
 }
 
