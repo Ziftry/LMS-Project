@@ -4,7 +4,7 @@
 using namespace std;
 
 student::student(string a, string b, int c, int d, vector <int> e) {
-	
+					//Constructor
 	username = a;
 	password = b;
 	maxAllowed = c;
@@ -13,7 +13,8 @@ student::student(string a, string b, int c, int d, vector <int> e) {
 }
 
 
-void student::printStudent() {
+void student::printStudent() {						// This function is for testing
+													// It prints all the information on the logged in student
 	cout << "Username: " << username << endl;
 	cout << "Password: " << password << endl;
 	cout << "maxAllowed: " << maxAllowed << endl;
@@ -26,7 +27,7 @@ void student::printStudent() {
 }
 
 
-void student::printList() {
+void student::printList() {							//This prints the ID's of all the student's borrowed books
 	for (int i = 0; i < borrowedList.size(); i++) {
 		cout << borrowedList[i] << endl;
 	}
@@ -34,28 +35,31 @@ void student::printList() {
 }
 
 
-bool student::hasBook(int x) {
+bool student::hasBook(int x) { // int x is a book ID
 
-	for (int i = 0; i < borrowedList.size(); i++) {
-		if (borrowedList[i] == x)
+	for (int i = 0; i < borrowedList.size(); i++) {	// Loops through all the ID's in the student's list
+		if (borrowedList[i] == x)					// returns true if the student is boring that book
 			return true;
 	}
 	return false;
 }
-void student::returnBook(int x) {
-	for (int i = 0; i < borrowedList.size(); i++) {
+
+void student::returnBook(int x) {					//takes 'x' which is a book ID
+	for (int i = 0; i < borrowedList.size(); i++) {	//  <----loops through the student's list of borrowed books
 		if (borrowedList[i] == x) {
-			borrowedList.erase(borrowedList.begin()+i);
+			borrowedList.erase(borrowedList.begin()+i);    //  Erases it from the list since the student returned it
 		}
 	}
 
-	// This should remove it from the student.txt file as well 
+	// This can be much more efficient if the book is updated individually here instead of rewriting the files
 
 }
-void student::borrowBook(int x) {
-	borrowedList.push_back(x);
+void student::borrowBook(int x) {     // The student borrowed a book of ID 'x'
+	borrowedList.push_back(x);		// adds that ID to the students borrowed list
 }
 
+
+//   Set functions below
 void student::setUsername(string x){
 	username = x;
 }
@@ -64,7 +68,7 @@ void student::setPassword(string x) {
 }
 void student::setMaxAllowed(int x) {
 	maxAllowed = x;
-}
+}			
 void student::setMaxTime(int x) {
 	maxTime = x;
 }
@@ -72,6 +76,7 @@ void student::setBorrowedList(vector <int> x) {
 	borrowedList = x;
 }
 
+//    Get functions below
 string student::getUsername() {
 	return username;
 }
